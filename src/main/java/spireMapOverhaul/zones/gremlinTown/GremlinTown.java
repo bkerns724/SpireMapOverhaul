@@ -356,7 +356,7 @@ public class GremlinTown extends AbstractZone
 
             if (item.type == RewardItem.RewardType.GOLD && lastCombatMetricKey != null
                     && lastCombatMetricKey.equals(GREMLIN_HORDE))
-                item.bonusGold = treasureRng.random(150, 200);
+                item.bonusGold = treasureRng.random(200, 250);
         }
 
         RewardItem item = new RewardItem();

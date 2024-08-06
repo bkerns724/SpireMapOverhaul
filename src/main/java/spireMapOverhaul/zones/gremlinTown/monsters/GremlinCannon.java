@@ -28,7 +28,6 @@ public class GremlinCannon extends CustomMonster
     private static final String[] MOVES;
     private static final String[] DIALOG;
     private static final String IMAGE_PATH = SpireAnniversary6Mod.makeImagePath("events/GremlinTown/EventChestOpened.png");
-    private boolean firstMove = true;
     private static final byte LOAD = 1;
     private static final byte FIRE_VULN = 2;
     private static final byte FIRE_WEAK = 3;
