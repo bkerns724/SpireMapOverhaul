@@ -93,7 +93,7 @@
   },
   "${ModID}:GremlinCannon": {
     "MOVES": [
-      "Loading...",
+      "Reloading...",
       "Fire!",
       "Fire!",
       "Fire!"

@@ -11,6 +11,8 @@ import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
+import com.megacrit.cardcrawl.powers.ArtifactPower;
+import com.megacrit.cardcrawl.powers.GainStrengthPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import spireMapOverhaul.SpireAnniversary6Mod;
 
@@ -29,11 +31,11 @@ public class ChubbyGremlin extends CustomMonster
     private static final byte ATTACK = 1;
     private static final int DAMAGE = 5;
     private static final int DAMAGE_A2 = 6;
-    private static final int MIN_HP = 40;
-    private static final int MAX_HP = 45;
-    private static final int MIN_HP_A7 = 43;
-    private static final int MAX_HP_A7 = 48;
-    private static final int STRENGTH_DOWN_AMOUNT = 1;
+    private static final int MIN_HP = 32;
+    private static final int MAX_HP = 35;
+    private static final int MIN_HP_A7 = 35;
+    private static final int MAX_HP_A7 = 38;
+    private static final int STRENGTH_DOWN_AMOUNT = 2;
 
     private final int attackDamage;
 
@@ -64,12 +66,15 @@ public class ChubbyGremlin extends CustomMonster
 
     @Override
     public void takeTurn() {
-        if (firstMove)
-            firstMove = false;
-
         atb(new AnimateSlowAttackAction(this));
         atb(new DamageAction(adp(), damage.get(0), AbstractGameAction.AttackEffect.BLUNT_LIGHT));
-        atb(new ApplyPowerAction(adp(), this, new StrengthPower(adp(), -STRENGTH_DOWN_AMOUNT)));
+        atb(new ApplyPowerAction(adp(), this, new StrengthPower(adp(), -STRENGTH_DOWN_AMOUNT), -STRENGTH_DOWN_AMOUNT,
+                true, AbstractGameAction.AttackEffect.NONE));
+
+        if (!adp().hasPower(ArtifactPower.POWER_ID)) {
+            atb(new ApplyPowerAction(adp(), this, new GainStrengthPower(adp(), STRENGTH_DOWN_AMOUNT), STRENGTH_DOWN_AMOUNT,
+                    true, AbstractGameAction.AttackEffect.NONE));
+        }
 
         atb(new RollMoveAction(this));
     }

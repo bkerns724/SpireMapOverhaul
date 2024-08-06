@@ -30,12 +30,12 @@ public class GremlinHealer extends CustomMonster
     private static final byte ATTACK = 2;
     private static final int DAMAGE = 10;
     private static final int DAMAGE_A2 = 11;
-    private static final int HEAL = 12;
-    private static final int HEAL_A17 = 15;
-    private static final int MIN_HP = 60;
-    private static final int MAX_HP = 64;
-    private static final int MIN_HP_A7 = 64;
-    private static final int MAX_HP_A7 = 69;
+    private static final int HEAL = 10;
+    private static final int HEAL_A17 = 12;
+    private static final int MIN_HP = 48;
+    private static final int MAX_HP = 52;
+    private static final int MIN_HP_A7 = 52;
+    private static final int MAX_HP_A7 = 56;
 
     private final int attackDamage;
     private final int heal;
