@@ -1,6 +1,9 @@
 package spireMapOverhaul;
 
-import basemod.*;
+import basemod.AutoAdd;
+import basemod.BaseMod;
+import basemod.IUIElement;
+import basemod.ModPanel;
 import basemod.abstracts.CustomSavable;
 import basemod.devcommands.ConsoleCommand;
 import basemod.eventUtil.AddEventParams;
@@ -66,6 +69,8 @@ import spireMapOverhaul.zoneInterfaces.EncounterModifyingZone;
 import spireMapOverhaul.zoneInterfaces.ModifiedEventRateZone;
 import spireMapOverhaul.zones.beastslair.BeastsLairZone;
 import spireMapOverhaul.zones.brokenspace.BrokenSpaceZone;
+import spireMapOverhaul.zones.divinitiesgaze.commands.ClearSetDivinityCommand;
+import spireMapOverhaul.zones.divinitiesgaze.commands.SetDivinityCommand;
 import spireMapOverhaul.zones.gremlinTown.GremlinTown;
 import spireMapOverhaul.zones.gremlinTown.HordeHelper;
 import spireMapOverhaul.zones.gremlinTown.potions.*;
@@ -292,6 +297,8 @@ public class SpireAnniversary6Mod implements
         initializeEvents();
 
         ConsoleCommand.addCommand("addzone", QueueZoneCommand.class);
+        ConsoleCommand.addCommand("setdivinity", SetDivinityCommand.class);
+        ConsoleCommand.addCommand("clearsetdivinity", ClearSetDivinityCommand.class);
         TextCodeInterpreter.addAccessible(ZoneShapeMaker.class);
     }
 
