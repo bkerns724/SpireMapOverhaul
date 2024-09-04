@@ -146,18 +146,6 @@ public class HordeHelper {
         CardCrawlGame.music.precacheTempBgm("BOSS_BOTTOM");
     }
 
-    public static boolean areMonstersDead(boolean firstResult) {
-        if (groundQueue == null || platformQueue == null || (groundQueue.isEmpty() && platformQueue.isEmpty()))
-            return firstResult;
-        return false;
-    }
-
-    public static boolean areMonstersBasicallyDead(boolean firstResult) {
-        if (groundQueue == null || platformQueue == null || (groundQueue.isEmpty() && platformQueue.isEmpty()))
-            return firstResult;
-        return false;
-    }
-
     public static void onVictory() {
         AbstractDungeon.scene.fadeInAmbiance();
         CardCrawlGame.music.fadeOutTempBGM();
@@ -327,9 +315,26 @@ public class HordeHelper {
     }
 
     public static void reinforce() {
-        if (platforms && (monsterLeftPlatform == null || monsterLeftPlatform.isDeadOrEscaped()))
+        boolean leftPlat;
+        boolean rightPlat;
+        if (!platforms) {
+            leftPlat = false;
+            rightPlat = false;
+        } else {
+            leftPlat = (monsterLeftPlatform == null || monsterLeftPlatform.isDeadOrEscaped());
+            rightPlat = (monsterRightPlatform == null || monsterRightPlatform.isDeadOrEscaped());
+            if (!(leftPlat || rightPlat)) {
+                int x = AbstractDungeon.miscRng.random(0, 1);
+                if ( x == 1)
+                    leftPlat = true;
+                else
+                    rightPlat = true;
+            }
+        }
+
+        if (leftPlat)
             fillLeftPlatform();
-        if (platforms && (monsterRightPlatform == null || monsterRightPlatform.isDeadOrEscaped()))
+        if (rightPlat)
             fillRightPlatform();
 
         if (getNextGround() == null)
@@ -337,14 +342,12 @@ public class HordeHelper {
 
         moveRightGremlinUp();
         moveLeftGremlinUp();
-        if (fillRight())
-            fillRight();
-        if (fillLeft())
-            fillLeft();
+        fillRight();
+        fillLeft();
     }
 
     public static AbstractMonster getNextGround() {
-        if (groundQueue.size() > (platformQueue.size() * 2) / 3 )
+        if (groundQueue.size() > platformQueue.size() / 2 )
             return groundQueue.get(0);
         else if (!platformQueue.isEmpty())
             return platformQueue.get(0);
@@ -359,30 +362,26 @@ public class HordeHelper {
             platformQueue.remove(0);
     }
 
-    public static boolean fillLeft() {
+    public static void fillLeft() {
         AbstractMonster m = getNextGround();
         if (m == null)
-            return false;
+            return;
 
-        if (monsterLeftFront == null || monsterLeftFront.isDeadOrEscaped()) {
+        if (monsterLeftFront == null || monsterLeftFront.isDeadOrEscaped())
             moveLeftGremlinIn();
-            return true;
-        } else if (monsterLeftBack == null || monsterLeftBack.isDeadOrEscaped())
+        else if (monsterLeftBack == null || monsterLeftBack.isDeadOrEscaped())
             moveLeftGremlinIn();
-        return false;
     }
 
-    public static boolean fillRight() {
+    public static void fillRight() {
         AbstractMonster m = getNextGround();
         if (m == null)
-            return false;
+            return;
 
-        if (monsterRightFront == null || monsterRightFront.isDeadOrEscaped()) {
+        if (monsterRightFront == null || monsterRightFront.isDeadOrEscaped())
             moveRightGremlinIn();
-            return true;
-        } else if (monsterRightBack == null || monsterRightBack.isDeadOrEscaped())
+        else if (monsterRightBack == null || monsterRightBack.isDeadOrEscaped())
             moveRightGremlinIn();
-        return false;
     }
 
     public static void calculateBackAttack() {
