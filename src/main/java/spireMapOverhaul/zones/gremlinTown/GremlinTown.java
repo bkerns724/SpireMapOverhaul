@@ -158,7 +158,7 @@ public class GremlinTown extends AbstractZone
     private static MonsterGroup getHordeStartGroup() {
 
         AbstractMonster[] retVal = new AbstractMonster[4];
-        retVal[0] = new GremlinWarrior(-320.0F, 25.0F);
+        retVal[0] = new ChubbyGremlin(-320.0F, 25.0F);
         retVal[1] = new GremlinFat(-160.0F, -12.0F);
         retVal[2] = new GremlinThief(25.0F, -35.0F);
         retVal[3] = new GremlinWarrior(205.0F, 40.0F);

@@ -20,31 +20,6 @@ import spireMapOverhaul.zones.gremlinTown.HordeHelper;
 
 public class HordePatches {
     @SpirePatch2(
-            clz = MonsterGroup.class,
-            method = "areMonstersBasicallyDead"
-    )
-    public static class basicallyAlivePatch {
-        @SpirePostfixPatch
-        public static boolean Postfix(boolean __result) {
-            if (GremlinTown.GREMLIN_HORDE.equals(AbstractDungeon.lastCombatMetricKey))
-                return HordeHelper.areMonstersBasicallyDead(__result);
-            return __result;
-        }
-    }
-    @SpirePatch2(
-            clz = MonsterGroup.class,
-            method = "areMonstersDead"
-    )
-    public static class alivePatch {
-        @SpirePostfixPatch
-        public static boolean Postfix(boolean __result) {
-            if (GremlinTown.GREMLIN_HORDE.equals(AbstractDungeon.lastCombatMetricKey))
-                return HordeHelper.areMonstersDead(__result);
-            return __result;
-        }
-    }
-
-    @SpirePatch2(
             clz = GameActionManager.class,
             method = "getNextAction"
     )

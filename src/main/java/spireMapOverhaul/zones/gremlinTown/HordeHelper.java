@@ -26,7 +26,6 @@ import com.megacrit.cardcrawl.vfx.SpeechBubble;
 import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.actions.WaitMoreAction;
 import spireMapOverhaul.util.Wiz;
-import spireMapOverhaul.zones.gremlinTown.monsters.ChubbyGremlin;
 import spireMapOverhaul.zones.gremlinTown.monsters.GremlinHealer;
 import spireMapOverhaul.zones.gremlinTown.monsters.GremlinRockTosser;
 import spireMapOverhaul.zones.gremlinTown.patches.HordePatches;
@@ -121,8 +120,7 @@ public class HordeHelper {
 
         Collections.shuffle(groundQueue, AbstractDungeon.monsterRng.random);
 
-        groundQueue.add(3, new ChubbyGremlin(Settings.WIDTH * 4, 0));
-        groundQueue.add(9, new GremlinNob(Settings.WIDTH * 4, 0));
+        groundQueue.add(8, new GremlinNob(Settings.WIDTH * 4, 0));
 
         ArrayList<AbstractMonster> tempArray = new ArrayList<>(Wiz.getEnemies());
         tempArray.sort( (m1, m2) -> (int)(m1.hb.x - m2.hb.x) );

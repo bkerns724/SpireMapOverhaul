@@ -35,9 +35,13 @@
   },
   "${ModID}:ChubbyGremlin": {
     "MOVES": [
-      "Sit"
+      "Sit",
+      "Catch Breath"
     ],
-    "NAME": "Chubby Gremlin"
+    "DIALOG": [
+      "Catching Breath"
+    ],
+    "NAME": "Very Fat Gremlin"
   },
   "${ModID}:ArmoredGremlin": {
     "MOVES": [
