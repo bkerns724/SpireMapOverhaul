@@ -323,18 +323,11 @@ public class HordeHelper {
         } else {
             leftPlat = (monsterLeftPlatform == null || monsterLeftPlatform.isDeadOrEscaped());
             rightPlat = (monsterRightPlatform == null || monsterRightPlatform.isDeadOrEscaped());
-            if (!(leftPlat || rightPlat)) {
-                int x = AbstractDungeon.miscRng.random(0, 1);
-                if ( x == 1)
-                    leftPlat = true;
-                else
-                    rightPlat = true;
-            }
         }
 
         if (leftPlat)
             fillLeftPlatform();
-        if (rightPlat)
+        else if (rightPlat)
             fillRightPlatform();
 
         if (getNextGround() == null)
@@ -347,7 +340,7 @@ public class HordeHelper {
     }
 
     public static AbstractMonster getNextGround() {
-        if (groundQueue.size() > platformQueue.size() / 2 )
+        if (groundQueue.size() > platformQueue.size() )
             return groundQueue.get(0);
         else if (!platformQueue.isEmpty())
             return platformQueue.get(0);
@@ -356,7 +349,7 @@ public class HordeHelper {
     }
 
     public static void removeNextGround() {
-        if (groundQueue.size() > (platformQueue.size() * 2) / 3 )
+        if (groundQueue.size() > platformQueue.size() )
             groundQueue.remove(0);
         else if (!platformQueue.isEmpty())
             platformQueue.remove(0);

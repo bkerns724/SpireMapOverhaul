@@ -25,8 +25,8 @@ public class ChubbyGremlin extends CustomMonster
             "monsters/GremlinTown/ChubbyGremlin/skeleton.atlas");
     private static final String SKELETON_JSON = SpireAnniversary6Mod.makeImagePath(
             "monsters/GremlinTown/ChubbyGremlin/skeleton.json");
-    private static final byte ATTACK = 1;
-    private static final byte REST = 2;
+    private static final byte ATTACK = 0;
+    private static final byte REST = 1;
     private static final int DAMAGE = 9;
     private static final int DAMAGE_A2 = 10;
     private static final int MIN_HP = 57;
@@ -86,14 +86,15 @@ public class ChubbyGremlin extends CustomMonster
     @Override
     protected void getMove(final int num) {
         if (!lastMove(ATTACK))
-            setMove(MOVES[0], ATTACK, Intent.ATTACK_DEBUFF, attackDamage);
+            setMove(MOVES[0], ATTACK, Intent.ATTACK, attackDamage);
         else
-            setMove(MOVES[1], REST, Intent.UNKNOWN);
+            setMove(REST, Intent.UNKNOWN);
     }
 
     static {
         MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
         NAME = monsterStrings.NAME;
         MOVES = monsterStrings.MOVES;
+        DIALOG = monsterStrings.DIALOG;
     }
 }
